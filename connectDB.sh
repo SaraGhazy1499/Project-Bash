@@ -12,6 +12,7 @@ if [ -d ~/Database ] ; then
 fi
 cd DB1
 p2=DB1
+
 select choice in createTable listTable dropTable
  do 
   case $REPLY in 

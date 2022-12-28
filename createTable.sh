@@ -1,11 +1,11 @@
-     read -p "Enter Name of Table  : " name 
-        reg="[a-zA-Z]+"
-       if [ -e $name ] ; then
-       echo "Table is Exist."
-       elif [[ $name =~ $reg ]] ; then
-       touch $name
+         reg="[a-zA-Z]+"
+          field="";
+         read -p "Enter Name of Table  : " nameTable  
+         if [ -e $nameTable ] ; then
+         echo "Table is Exist."
+         elif [[ $nameTable =~ $reg ]] ; then
 
-        read -p "Enter Name of Fields  : " fields
+         read -p "Enter Number of Fields  : " fields
 
          for ((i=1;i<=$fields;i++))
           do
@@ -13,13 +13,13 @@
           select type in string number
            do
            case $REPLY in 
-           string)
-           echo $namefield':string'  >>  $name
-           break
-           ;;
+            string)
+            field+=$namefield":string"
+             break
+             ;;
 
-            number)
-            echo $namefield':number'  >>  $name
+             number)
+             field+=$namefield":number"
             break
             ;;
 
@@ -31,8 +31,10 @@
            esac
 
            done
-            done
+           done
 
+         touch $nameTable
+       echo $field >>  $nameTable
        echo "Created Table Successfully!"
        else
        echo "Name of Table is error."

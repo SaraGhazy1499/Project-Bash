@@ -4,16 +4,17 @@ shopt -s extglob
 if [ -d ~/Database ] ; then
  cd ~/Database
  echo "enter in database"
- ls -l
+
  else
   mkdir Database
   cd ~/Database
   echo "create and enter in databse"
 fi
 cd DB1
-p2=DB1
+p2="DB1"
 
-select choice in createTable listTable dropTable
+
+select choice in createTable listTable dropTable Exit
  do 
   case $REPLY in 
     createTable)
@@ -21,8 +22,15 @@ select choice in createTable listTable dropTable
      ;;
 
     listTable)
-      ls -p  | grep -v / 
-     ;;
+      path=$(pwd)
+      files=$(ls $path | wc -l )
+      echo $files
+       if [ $files -gt 0 ] ; then 
+       ls -p  | grep -v / 
+       else
+       echo "There are no tables."
+       fi
+      ;;
 
      dropTable)
        read -p "Enter Name of Table  : " name 

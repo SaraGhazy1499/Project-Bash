@@ -10,16 +10,18 @@
          for ((i=1;i<=$fields;i++))
           do
           read -p "Enter Name of field  : " namefield
+
+          echo "Enter Type Of Field : "
           select type in string number
            do
            case $REPLY in 
             string)
-            field+=$namefield":string"
+            field+=$namefield":string,"
              break
              ;;
 
              number)
-             field+=$namefield":number"
+             field+=$namefield":number,"
             break
             ;;
 

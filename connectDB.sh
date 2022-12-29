@@ -41,6 +41,9 @@ select choice in createTable listTable dropTable Exit
        echo "error , Table is not exist."
        fi
     ;;
+       Exit)
+       break
+         ;;
 
     *)
     echo "Error"

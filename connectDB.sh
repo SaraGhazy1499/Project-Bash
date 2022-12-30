@@ -14,7 +14,7 @@ cd DB1
 p2="DB1"
 
 
-select choice in createTable listTable dropTable Exit
+select choice in createTable listTable dropTable  selectData deleteData Exit
  do 
   case $REPLY in 
     createTable)
@@ -41,6 +41,10 @@ select choice in createTable listTable dropTable Exit
        echo "error , Table is not exist."
        fi
     ;;
+
+      selectData)
+       . selectData.sh
+      ;;
        Exit)
        break
          ;;

@@ -46,12 +46,15 @@ select choice in createTable listTable dropTable  selectData deleteData Exit
        . selectData.sh
       ;;
        Exit)
+       . bash.sh
        break
          ;;
 
     *)
     echo "Error"
+    . bash.sh
     break
+    ;;
 
   esac
 

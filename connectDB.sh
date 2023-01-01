@@ -1,19 +1,6 @@
 export LC_COLLATE=C
 shopt -s extglob
 
-if [ -d ~/Database ] ; then
- cd ~/Database
- echo "enter in database"
-
- else
-  mkdir Database
-  cd ~/Database
-  echo "create and enter in databse"
-fi
-cd DB1
-p2="DB1"
-
-
 select choice in createTable listTable dropTable  selectData deleteData updateData Exit
  do 
   case $REPLY in 
@@ -51,16 +38,16 @@ select choice in createTable listTable dropTable  selectData deleteData updateDa
       ;;
 
        Exit)
+       cd --
        . bash.sh
        break
          ;;
 
-    *)
-    echo "Error"
-    . bash.sh
-    break
+       *)
+       echo "Syntax Error."
     ;;
 
   esac
 
 done
+

@@ -1,22 +1,45 @@
 #!/usr/bin/bash
 
-select choice in Create_DB List_DB Drop_DB Connect_DB Exit
+if [ -d Database ] ; then
+ cd ~/Database
+ echo "enter in database"
+
+ else
+  mkdir Database
+  cd Database
+  echo "create and enter in databse"
+fi
+
+select choice in createDB listDB dropDB connectDB Exit
 do
 case $REPLY in 
-1)
- echo "create_DB"
+createDB)
+ . createScript.sh
 ;;
-2)
- echo "List_DB"
+listDB)
+ . listScript.sh
 ;;
-3)
- echo "Drop_DB"
+dropDB)
+ . deleteScript.sh
 ;;
-4)
-echo "Connect_DB"
+connectDB)
+read -p "Enter Name of DB  : " nameDB
+ if [ -e $nameDB ] ; then
+ cd $nameDB
+ . connectDB.sh
+ else
+  echo "Table is not exist."
+ fi
 ;;
-5)
+
+Exit)
+cd --
 break
+;;
+
+*)
+echo "Syntax Error";
+;;
 
 esac
 done

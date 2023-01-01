@@ -1,6 +1,6 @@
 read -p "Enter Name Of Table : " nameTable
 if [ -f $nameTable ] ; then
-    select choose in selectAll selectByColumn selectByData 
+    select choose in selectAll selectByColumn selectByData  Exit
     do
         
         case $REPLY in
@@ -98,11 +98,15 @@ if [ -f $nameTable ] ; then
                 fi
                    
             ;;
+
+            Exit)
+             . connectDB.sh
+                break
+
+            ;;
             
             *)
              echo "Synatx error"
-            . connectDB.sh
-                break
             ;;
             
             

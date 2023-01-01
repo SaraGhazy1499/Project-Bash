@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+read -p "enter DataBase name :" dbName
+
+if [ -e $dbName  ] ;then
+
+  ls -d */
+ 
+else 
+  echo "this Database is not found"
+
+fi

@@ -1,15 +1,4 @@
 #!/usr/bin/bash
-
-if [ -d Database ] ; then
- cd ~/Database
- echo "enter in database"
-
- else
-  mkdir Database
-  cd Database
-  echo "create and enter in databse"
-fi
-
 select choice in createDB listDB dropDB connectDB Exit
 do
 case $REPLY in 
@@ -33,7 +22,6 @@ read -p "Enter Name of DB  : " nameDB
 ;;
 
 Exit)
-cd --
 break
 ;;
 

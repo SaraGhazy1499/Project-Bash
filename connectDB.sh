@@ -38,7 +38,7 @@ select choice in createTable listTable dropTable  selectData deleteData updateDa
       ;;
 
        Exit)
-       cd --
+       cd ..
        . bash.sh
        break
          ;;

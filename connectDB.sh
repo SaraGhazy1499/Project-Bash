@@ -14,7 +14,7 @@ cd DB1
 p2="DB1"
 
 
-select choice in createTable listTable dropTable  selectData deleteData Exit
+select choice in createTable listTable dropTable  selectData deleteData updateData Exit
  do 
   case $REPLY in 
     createTable)
@@ -45,6 +45,11 @@ select choice in createTable listTable dropTable  selectData deleteData Exit
       selectData)
        . selectData.sh
       ;;
+
+      updateData)
+      . updateData.sh
+      ;;
+
        Exit)
        . bash.sh
        break

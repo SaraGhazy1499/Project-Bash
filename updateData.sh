@@ -76,14 +76,32 @@ updateByColumn)
                    fi
                 done
 
+     sed '1,2d' $nameTable | awk -F":" -v Table=$nameTable -v column=$check -v oldval="$oldval" -v newval="$newval" -v r=""  '{
+      c=1;
+      while(c<=NF)
+      {
 
+      if($c==oldval&& c==column)
+        r=r newval;
+        else
+        r=r $c;
 
-             sed  '1,2d' -e sed -i 's/^'$oldval':$/'$newval':/g'
+       if(c<NF){
+         r=r FS;
+         }
+         if(c==NF)
+         r=r "\n";
 
-
-
-
-
+      c++;
+      }
+      }
+      END{ 
+         system( "sed  -n -i '"1,2p"' " Table );
+         print r >> Table;
+         print "Updated successfully!";
+          }
+      
+      ' 
 
 ;;
 

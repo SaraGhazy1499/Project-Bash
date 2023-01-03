@@ -44,6 +44,7 @@ do
             done
             
             
+             if [[ $exist -eq 1 ]] ; then
             if [[ $valId -gt 0 ]] ; then
                 typeset -i def=0;
                 sed '1,2d' $nameTable | awk -F":" -v counterRow=$def -v row=$rowId -v Table=$nameTable -v column=$check  -v newval="$newval" -v r=""  '{
@@ -78,8 +79,14 @@ do
                 
             else
                 
-                echo "Synatx error , column is not exist."
+                echo "Synatx error , primary key is not exist."
                 
+            fi
+
+            else
+
+            echo "Column is not Exist"
+
             fi
             
             
@@ -107,6 +114,7 @@ do
                 fi
             done
             
+            if [[ $exist -eq 1 ]] ; then
             sed '1,2d' $nameTable | awk -F":" -v Table=$nameTable -v column=$check -v oldval="$oldval" -v newval="$newval" -v r=""  '{
       c=1;
       while(c<=NF)
@@ -133,6 +141,11 @@ do
           }
 
             '
+            else
+
+            echo "Column is not Exist"
+
+            fi
             
         ;;
 

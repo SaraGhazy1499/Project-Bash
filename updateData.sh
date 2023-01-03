@@ -51,7 +51,8 @@ do
          c=1;
       while(c<=NF)
       {
-      if($c==oldval&& c==column)
+        
+      if(counterRow==rowId&&c==column)
         r=r newval;
         else
         r=r $c;

@@ -1,35 +1,35 @@
 export LC_COLLATE=C
 shopt -s extglob
 
-select choice in updateByPrimarykey updateByColumn
+select choice in updateByPrimarykey updateByColumn Exit
 do
     
     case $REPLY in
         
         
         updateByPrimarykey)
+
+            typeset -i rowId=0
+            typeset -i check=0
+            typeset -i exist=0
             
             read -p "Enter Name Of Table : " nameTable
             read -p "Enter Primary Key : " id
             read -p "Enter Name Column : " nameColumn
             read -p "Enter newVal Name : "  newval
             valId=($( awk -F ":" '$1='$id  $nameTable ))
-            typeset -i rowId=0
             
             pk=($( sed '1,2d' $nameTable | cut -d: -f1  | sed -n 'p' ))
+            
             for i in "${pk[@]}"
             do
                rowId=$rowId+1
-                if [ $i == $rowId ] ; then
+                if [ $i == $id ] ; then
                     break
                 fi
                 
             done
-            rowId=$rowId
-            
-            
-            typeset -i check=0
-            typeset -i exist=0
+
             
             arrayColumn=($( cat  $nameTable | sed  -n '1p' | tr ":" "\n" ))
             
@@ -51,9 +51,10 @@ do
          c=1;
       while(c<=NF)
       {
-        
-      if(counterRow==rowId&&c==column)
+      if(counterRow==row && c==column)
+      {
         r=r newval;
+      }
         else
         r=r $c;
 
@@ -68,7 +69,10 @@ do
 
       }
       END{
-         print r ;
+        print r;
+         system( "sed  -n -i '"1,2p"' " Table );
+         print r >> Table;
+         print "Updated successfully!";
           }
                 '
                 
@@ -131,6 +135,15 @@ do
             '
             
         ;;
+
+       Exit)
+        . connectDB.sh
+       break
+       ;;
+
+       *)
+       echo "syntax error"
+       ;;
         
         
         

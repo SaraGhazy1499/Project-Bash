@@ -1,7 +1,7 @@
 export LC_COLLATE=C
 shopt -s extglob
 
-select choice in createTable listTable dropTable  selectData deleteData updateData Exit
+select choice in createTable listTable dropTable  selectData deleteData updateData insertData deleteAllData Exit
  do 
   case $REPLY in 
     createTable)
@@ -35,6 +35,18 @@ select choice in createTable listTable dropTable  selectData deleteData updateDa
 
       updateData)
       . updateData.sh
+      ;;
+
+      insertData)
+      . insertData.sh
+      ;;
+
+      deleteData)
+      . deleteDataFromTable.sh
+      ;;
+
+      deleteAllData)
+      . deleteScript.sh
       ;;
 
        Exit)

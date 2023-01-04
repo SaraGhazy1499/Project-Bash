@@ -1,4 +1,5 @@
 reg="^[a-zA-Z_$]+[a-zA-Z0-9_$]*"
+regFieldsNumber="[1-9]+"
 field=""
 typeField=""
 error=0
@@ -8,13 +9,12 @@ if [ -e $nameTable ] ; then
     elif [[ $nameTable =~ $reg ]] ; then
     
     read -p "Enter Number of columns  : " fields
-    
-    regFieldsNumber="[1-9]+"
+
     if [[ $fields =~ $regFieldsNumber ]] ; then
         
         echo "your first field will be primary key ."
         
-        typeField+="primary key"
+        typeField+="primarykey"
         for ((i=1;i<=$fields;i++))
         do
             read -p "Enter Name of field  : " namefield

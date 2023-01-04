@@ -10,8 +10,8 @@ field=""
 regixOfNumber='^[0-9]+$'
 regixOfString='^[A-Za-z]+$'
 
-arrayColumn=($(cat ./test |sed -n '1p' | tr ":" "\n"))
-arrayofdatatype=($(cat ./test |sed -n '2p' | tr ":" "\n"))   #refix
+arrayColumn=($(cat $nameTable |sed -n '1p' | tr ":" "\n"))
+arrayofdatatype=($(cat $nameTable |sed -n '2p' | tr ":" "\n"))   #refix
 
 
 for i in ${arrayColumn[@]};
@@ -21,7 +21,7 @@ do
 read -p "enter $i :" x
 #-------------------------regix--------------
 
-pkCol=($(cat ./test | cut -d: -f1))
+pkCol=($(cat $nameTable | cut -d: -f1))
 
   for h in ${#pkCol[@]};
     do
@@ -73,7 +73,7 @@ done
 
 if [[ $dataTypeFlag==0 && $primarykey==0 ]]; then
 
-  echo ${field:0:-1} >> ./test
+  echo ${field:0:-1} >> $nameTable
 else
   echo "Failed to store record"
  fi

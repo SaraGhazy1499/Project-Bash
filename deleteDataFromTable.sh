@@ -7,16 +7,16 @@ flag=0;
 declare -i numOfLineBFDelete
 declare -i numOfLineAFDelete
 
-read -p "enter table name :" tablename
+read -p "enter table name :" nameTable
 
 read -p "enter the primary key :" primaryKey
 
-numOfLineBFDelete=($( wc -l < $tablename ))
+numOfLineBFDelete=($( wc -l < $nameTable ))
 
 #echo $numOfLineBfDelete
-sed -i /^$primaryKey:/d $tablename
+sed -i /^$primaryKey:/d $nameTable
 
-numOfLineAFDelete=($( wc -l < $tablename ))
+numOfLineAFDelete=($( wc -l < $nameTable ))
 #echo $numOfLineAfDelete
 if [ $numOfLineBFDelete -ne $numOfLineAFDelete ]; then
  echo "deleted successfully"
@@ -25,4 +25,4 @@ else
 #echo "ee"
 
 fi
-cat $tablename
+cat $nameTable
